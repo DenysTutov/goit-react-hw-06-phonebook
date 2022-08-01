@@ -1,43 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { ContactForm } from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
-import { useLocalSorage } from '../hooks/useLocalStorage';
+
 import style from '../components/App.module.scss';
 
+import {
+  addNewContact,
+  filteredContacts,
+  deleteContact,
+} from '../redux/contactsSlice';
+
 export const App = () => {
-  const { contacts, setContacts } = useLocalSorage();
+  const dispatch = useDispatch();
 
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  const contactsItems = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.contacts.filter);
 
   const handleAddNewContact = newContact => {
-    setContacts(prevState => [...prevState, newContact]);
+    dispatch(addNewContact(newContact));
   };
 
   const handleChangeFilter = event => {
-    setFilter(event.currentTarget.value);
+    dispatch(filteredContacts(event.currentTarget.value));
   };
 
   const getFilteredContacts = () => {
     const normalizeFilter = filter.toLowerCase();
 
-    return contacts.filter(({ name }) =>
+    return contactsItems.filter(({ name }) =>
       name.toLowerCase().includes(normalizeFilter)
     );
   };
 
   const handleDeleteContact = contactId => {
-    setContacts(prevState => prevState.filter(({ id }) => id !== contactId));
+    dispatch(deleteContact(contactId));
   };
 
-  const contactsName = contacts.map(contact => contact.name);
+  const contactsName = contactsItems.map(contact => contact.name);
 
   return (
     <div>

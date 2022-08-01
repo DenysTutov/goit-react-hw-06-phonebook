@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import ContactItem from '../ContactItem/ContactItem';
 import style from './ContactList.module.scss';
 
@@ -26,10 +26,10 @@ const ContactList = ({ visibleContacts, onDeleteContact }) => {
 
 export default ContactList;
 
-ContactList.propTypes = {
-  visibleContacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    })
-  ),
-};
+// ContactList.propTypes = {
+//   visibleContacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//     })
+//   ),
+// };

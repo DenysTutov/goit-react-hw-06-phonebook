@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { showError } from '../../utils/notification';
@@ -90,7 +90,7 @@ export const ContactForm = ({ onSubmit, contactsName }) => {
   );
 };
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  contactsName: PropTypes.arrayOf(PropTypes.string.isRequired),
-};
+// ContactForm.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+//   contactsName: PropTypes.arrayOf(PropTypes.string.isRequired),
+// };
